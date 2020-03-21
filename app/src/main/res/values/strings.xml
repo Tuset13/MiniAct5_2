@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">MiniAct5_2</string>
+    <string name="web_take_button">Download Web Page</string>
+    <string name="image_take_button">Download Image</string>
+    <string name="image_text">(Image Space)</string>
+    <string name="edittext_hint">Write the URL here</string>
+    <string name="wrong_url">The introduced URL is malformed or not valid!!</string>
+    <string name="ex_url">Example Url</string>
+    <string name="example_url">https://s.inyourpocket.com/gallery/113383.jpg</string>
 </resources>
