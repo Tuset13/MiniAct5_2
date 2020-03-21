@@ -2,15 +2,19 @@ package com.example.miniact5_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -26,13 +30,23 @@ import java.net.URLConnection;
 public class MainActivity extends AppCompatActivity {
 
     Handler h;
+    ConnectivityManager cm;
+    NetworkInfo activeNetwork;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        seeNetworkState();
         this.h = new Handler();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        seeNetworkState();
     }
 
     public void onDownloadWeb(View view) {
@@ -126,5 +140,25 @@ public class MainActivity extends AppCompatActivity {
         final EditText eText = findViewById(R.id.editText);
 
         eText.setText(getText(R.string.example_url));
+    }
+
+    public void seeNetworkState(){
+        cm =(ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(cm != null){
+            activeNetwork = cm.getActiveNetworkInfo();
+        }
+        if(activeNetwork != null && activeNetwork.isConnectedOrConnecting())
+        {
+            if(activeNetwork.getType() == ConnectivityManager.TYPE_WIFI)
+            {
+                Toast.makeText(this, R.string.wifiCon, Toast.LENGTH_LONG).show();
+            }
+            else if(activeNetwork.getType() == ConnectivityManager.TYPE_MOBILE)
+            {
+                Toast.makeText(this, R.string.mobCon, Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, R.string.noCon, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }

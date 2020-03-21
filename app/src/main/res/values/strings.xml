@@ -7,4 +7,8 @@
     <string name="wrong_url">The introduced URL is malformed or not valid!!</string>
     <string name="ex_url">Example Url</string>
     <string name="example_url">https://s.inyourpocket.com/gallery/113383.jpg</string>
+
+    <string name="noCon">No network operating!</string>
+    <string name="wifiCon">Wifi Connected!</string>
+    <string name="mobCon">Mobile Connected!</string>
 </resources>
